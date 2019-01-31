@@ -1,0 +1,9 @@
+from datetime import date,timedelta
+import functools 
+def res(file_pattern,offset_from_today=0):
+    required_date=date.today()-timedelta(offset_from_today)
+    date_patterns=['%Y','%y','%m','%d','%b','%B','%w','%a','%A']
+    print(reduce(lambda res,p:res.replace(p,required_date.strftime(p)),date_patterns,file_pattern))
+    return reduce(lambda res,p:res.replace(p,required_date.strftime(p)),date_patterns,file_pattern)
+
+f=res('197301,197302',int(6) if 6 else 0)
